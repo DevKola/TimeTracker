@@ -1,6 +1,6 @@
-﻿namespace TimeTracker.Shared.Entities
+﻿namespace TimeTracker.Shared.Models.TimeEntry
 {
-    public class TimeEntry
+    public class TimeEntryUpdateRequest
     {
         public int Id { get; set; }
 
@@ -9,9 +9,5 @@
         public DateTime? Start { get; set; }
 
         public DateTime? End { get; set; }
-
-        public DateTime DateCreate { get; set; } = DateTime.Now;
-
-        public DateTime? DateUpdated { get; set; }
     }
 }
