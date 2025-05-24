@@ -11,6 +11,7 @@
         public DateTime? End { get; set; }
 
         public DateTime DateCreate { get; set; } = DateTime.Now;
+
         public DateTime? DateUpdated { get; set; }
     }
 }
