@@ -16,36 +16,36 @@ namespace TimeTracker.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<TimeEntryResponse> GetTimeEntryById()
+        public async Task<ActionResult<TimeEntryResponse>> GetTimeEntryById(int id)
         {
-            var result = _timeEntryServices.GetAllTimeEntries();
+            var result = await _timeEntryServices.GetTimeEntryById(id);
 
             if (result is null)
             {
                 return NotFound("Time entry with the given Id not found");
             }
 
-            return Ok(_timeEntryServices.GetAllTimeEntries());
+            return Ok(result);
         }
 
         [HttpGet]
-        public ActionResult<List<TimeEntryResponse>> GetAllTimeEntries(int id)
+        public async Task<ActionResult<List<TimeEntryResponse>>> GetAllTimeEntries()
         {
-            return Ok(_timeEntryServices.GetAllTimeEntries());
+            return Ok(await _timeEntryServices.GetAllTimeEntries());
         }
 
 
         [HttpPost]
-        public ActionResult<List<TimeEntryResponse>> CreateTimeEntry(TimeEntryCreatedRequest timeEntry)
+        public async Task<ActionResult<List<TimeEntryResponse>>> CreateTimeEntry(TimeEntryCreatedRequest timeEntry)
         {
 
-            return Ok(_timeEntryServices.CreateTimeEntry(timeEntry));
+            return Ok(await _timeEntryServices.CreateTimeEntry(timeEntry));
         }
 
         [HttpPut("{id}")]
-        public ActionResult<List<TimeEntryResponse>> UpadteTimeEntry(int id, TimeEntryUpdateRequest timeEntry)
+        public async Task<ActionResult<List<TimeEntryResponse>>> UpadteTimeEntry(int id, TimeEntryUpdateRequest timeEntry)
         {
-            var result = _timeEntryServices.UpdateTimeEntry(id, timeEntry);
+            var result = await _timeEntryServices.UpdateTimeEntry(id, timeEntry);
             if (result is null)
             {
                 return NotFound("Time entry with the given Id not found");
@@ -54,10 +54,12 @@ namespace TimeTracker.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<List<TimeEntryResponse>> DeleteTimeEntry(int id)
+        public async Task<ActionResult<List<TimeEntryResponse>>> DeleteTimeEntry(int id)
         {
-            var result = _timeEntryServices.DeleteTimeEntry(id);
+            var result = await _timeEntryServices.DeleteTimeEntry(id);
+
             if (result is null) return NotFound("Time entry with the given Id not found");
+
             return Ok(result);
         }
     }
