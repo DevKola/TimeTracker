@@ -10,7 +10,6 @@ namespace TimeTracker.Shared.Entities
 
         public ProjectDetails? ProjectDetails { get; set; }
 
-
         public List<User> Users { get; set; } = new List<User>();
     }
 }

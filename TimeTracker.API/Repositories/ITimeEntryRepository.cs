@@ -13,5 +13,7 @@ namespace TimeTracker.API.Repositories
         Task<List<TimeEntry>?> UpdateTimeEntry(int id, TimeEntry timeEntry);
 
         Task<List<TimeEntry>?> DeleteTimeEntry(int id);
+
+        Task<List<TimeEntry>> GetTimeEntryByProject(int projectId);
     }
 }

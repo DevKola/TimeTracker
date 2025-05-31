@@ -10,6 +10,12 @@ namespace TimeTracker.API.Data
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TimeEntry>().Navigation(te => te.Project).AutoInclude();
+            modelBuilder.Entity<Project>().Navigation(te => te.ProjectDetails).AutoInclude();
+        }
+
         public DbSet<TimeEntry> TimeEntries { get; set; }
 
         public DbSet<Project> Projects { get; set; }

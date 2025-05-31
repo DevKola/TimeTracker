@@ -34,6 +34,11 @@ namespace TimeTracker.API.Controllers
             return Ok(await _timeEntryServices.GetAllTimeEntries());
         }
 
+        [HttpGet("project/{projectId}")]
+        public async Task<ActionResult<List<TimeEntryByProjectResponse>>> GetTimeEntriesByProject(int projectId)
+        {
+            return Ok(await _timeEntryServices.GetTimeEntriesByProject(projectId));
+        }
 
         [HttpPost]
         public async Task<ActionResult<List<TimeEntryResponse>>> CreateTimeEntry(TimeEntryCreatedRequest timeEntry)
